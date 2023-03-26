@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     [SerializeField]
     GameObject subMenuCommons;
     [SerializeField]
     Text subMenuTitle;
+    [SerializeField]
     GameObject currentMenu;
 
-    private void Start()
+    public void ToggleMenu()
     {
-        currentMenu = gameObject;
+        gameObject.SetActive(!gameObject.activeSelf);
     }
-
-    public void OpenMenu(GameObject menu)
+    public void ToggleSubMenu(GameObject menu)
     {
         currentMenu.SetActive(false);
         currentMenu = menu;

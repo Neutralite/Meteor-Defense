@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 21770710}
+  - component: {fileID: 21770711}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: Untagged
@@ -162,6 +163,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &21770711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21770709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b009acd0ff6ce4c489cdcc77859c39ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildings: []
+  meteors: []
 --- !u!1 &109740979
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +329,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194318844}
-  - component: {fileID: 194318843}
   - component: {fileID: 194318845}
   m_Layer: 0
   m_Name: GameObject
@@ -323,19 +337,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &194318843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194318842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca4c12ee0645fa4d919e791a398c9b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragSpeed: 2
 --- !u!4 &194318844
 Transform:
   m_ObjectHideFlags: 0
@@ -1499,6 +1500,7 @@ GameObject:
   - component: {fileID: 1418467892}
   - component: {fileID: 1418467891}
   - component: {fileID: 1418467890}
+  - component: {fileID: 1418467894}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -1584,6 +1586,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1418467894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418467889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f546a836fc6dd545863d10be7a3e4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  citiesAmount: 10
 --- !u!1 &1432922460
 GameObject:
   m_ObjectHideFlags: 0
