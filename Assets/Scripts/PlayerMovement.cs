@@ -1,16 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     GameObject shield;
     bool bouncing,falling;
     float movementScale = 0.5f;
-    float rotationScale = 0.01f;
+    float bounceScale = 0.01f;
     // Update is called once per frame
     void Update()
+    {
+        MoveShield();
+
+        BounceShield();
+    }
+
+    private void MoveShield()
     {
         if (Input.GetKey(KeyCode.W))
         {
@@ -28,7 +33,10 @@ public class ShieldMovement : MonoBehaviour
         {
             transform.Rotate(Vector3.down * movementScale);
         }
+    }
 
+    private void BounceShield()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && !bouncing && !falling)
         {
             bouncing = true;
@@ -36,9 +44,9 @@ public class ShieldMovement : MonoBehaviour
 
         if (bouncing)
         {
-            if (shield.transform.localPosition.z > -7)
+            if (shield.transform.localPosition.z > -1)
             {
-                shield.transform.localPosition -= rotationScale * Vector3.forward;
+                shield.transform.localPosition -= bounceScale * Vector3.forward;
             }
             else
             {
@@ -49,13 +57,13 @@ public class ShieldMovement : MonoBehaviour
 
         if (falling)
         {
-            if (shield.transform.localPosition.z < -6)
+            if (shield.transform.localPosition.z < 0)
             {
-                shield.transform.localPosition += rotationScale * Vector3.forward;
+                shield.transform.localPosition += bounceScale * Vector3.forward;
             }
             else
             {
-                shield.transform.localPosition = Vector3.forward * - 6;
+                shield.transform.localPosition = Vector3.zero;
                 falling = false;
             }
 

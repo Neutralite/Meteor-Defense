@@ -15,8 +15,4 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.text = $"Score: {score += value}";
     }
-    public void ScoreToLeaderboard()
-    {
-        LeaderboardManager.instance.AddHighScore(score);
-    }
 }

@@ -3,24 +3,39 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager instance;
     [SerializeField]
-    GameObject subMenuCommons;
+    GameObject currentUI, previousUI, menuCommons;
     [SerializeField]
     Text subMenuTitle;
-    [SerializeField]
-    GameObject currentMenu;
 
-    public void ToggleMenu()
+    private void Start()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        instance = this;
     }
-    public void ToggleSubMenu(GameObject menu)
+    
+    public void CloseUI()
     {
-        currentMenu.SetActive(false);
-        currentMenu = menu;
-        subMenuCommons.SetActive(!subMenuCommons.activeSelf);
-        subMenuTitle.text = currentMenu.name;
-        currentMenu.SetActive(true);
+        currentUI.SetActive(false);
+    }
+
+    public void OpenUI(GameObject newUI)
+    {
+        previousUI = currentUI;
+        currentUI = newUI;
+        currentUI.SetActive(true);
+    }
+
+    public void OpenPreviousUI()
+    {
+        currentUI = previousUI;
+        currentUI.SetActive(true);
+    }
+
+    public void ToggleMenuCommons(bool active)
+    {
+        menuCommons.SetActive(active);
+        subMenuTitle.text = currentUI.name;
     }
 
     public void QuitGame()

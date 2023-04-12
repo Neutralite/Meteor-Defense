@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Meteor : MonoBehaviour
+public class CutsceneManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject meteorModel;
+    GameObject gameUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,10 @@ public class Meteor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            MenuManager.instance.CloseUI();
+            MenuManager.instance.OpenUI(gameUI);
+        }
     }
 }

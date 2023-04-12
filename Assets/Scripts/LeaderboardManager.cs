@@ -6,7 +6,7 @@ public class LeaderboardManager : MonoBehaviour
 {
     public static LeaderboardManager instance;
     [SerializeField]
-    List<int> highScores = new List<int>();
+    Dictionary<string, int> leaderboard;
 
     private void Start()
     {
