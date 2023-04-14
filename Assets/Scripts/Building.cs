@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    [SerializeField]
-    GameObject buildingModel;
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == GameManager.instance.meteorLayer)

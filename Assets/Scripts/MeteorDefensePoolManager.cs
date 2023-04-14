@@ -4,10 +4,11 @@ using UnityEngine;
 public class MeteorDefensePoolManager : MonoBehaviour
 {
     public static MeteorDefensePoolManager instance;
+ 
     [SerializeField]
-    GameObject citiesPrefab, meteorsPrefab;
-    [SerializeField]
-    List<GameObject> cities = new List<GameObject>(), 
+    List<GameObject> citiesPrefabs = new List<GameObject>(),
+                     meteorsPrefabs = new List<GameObject>(),
+                     cities = new List<GameObject>(), 
                      meteors = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -42,7 +43,7 @@ public class MeteorDefensePoolManager : MonoBehaviour
         }
         else
         {
-            temp = Instantiate(citiesPrefab,transform);
+            temp = Instantiate(citiesPrefabs[Random.Range(0,citiesPrefabs.Count)],transform);
         }
         temp.SetActive(true);
         temp.transform.rotation = UnityEngine.Random.rotation;
@@ -57,7 +58,7 @@ public class MeteorDefensePoolManager : MonoBehaviour
         }
         else
         {
-            temp = Instantiate(meteorsPrefab, transform);
+            temp = Instantiate(meteorsPrefabs[Random.Range(0, meteorsPrefabs.Count)], transform);
         }
         temp.SetActive(true);
         temp.transform.rotation = UnityEngine.Random.rotation;

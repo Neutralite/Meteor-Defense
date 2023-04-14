@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +11,13 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        
+        volumeSlider.value = PlayerPrefs.GetFloat("volume",1);
+        ChangeVolume();
     }
 
-    public void SetValue(float value)
-    {
-        AudioListener.volume = value;
-        volumeSlider.value = value;
-    }
     public void ChangeVolume()
     {
         AudioListener.volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("volume", volumeSlider.value);
     }
 }

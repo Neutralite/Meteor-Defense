@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class SaveDataManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    SoundManager soundManager;
+    private void Start()
     {
-        
+        LoadSaveData();
+    }
+    void LoadSaveData()
+    {
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SaveData() { 
+    }
+
+    public void DeleteSaveData()
     {
         
     }
