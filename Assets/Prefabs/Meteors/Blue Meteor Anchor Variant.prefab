@@ -64,6 +64,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 517586699384886234, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a982efbd009125540a07bfa96e1adebd, type: 2}
+    - target: {fileID: 7246217728053380077, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 99a706629bf42b34a8a9d80dc543fd4e, type: 2}
+    - target: {fileID: 7246217728053380078, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246217728053380079, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246217728053380079, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246217728053380079, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7246217728189828792, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
       propertyPath: m_Name
       value: Blue Meteor Anchor Variant

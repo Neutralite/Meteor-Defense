@@ -39,6 +39,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7246217728189828793}
     m_Modifications:
+    - target: {fileID: -6079968945005636168, guid: 36c87afba18919f4f8ae5df8f551903f, type: 3}
+      propertyPath: meteorAnchor
+      value: 
+      objectReference: {fileID: 7246217728189828792}
     - target: {fileID: 2021727763108523730, guid: 36c87afba18919f4f8ae5df8f551903f, type: 3}
       propertyPath: m_Name
       value: Meteor

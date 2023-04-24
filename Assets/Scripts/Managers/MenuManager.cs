@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     GameObject menuCommons,mainMenu,pauseMenu;
-    public GameObject gameUI;
+    public GameObject gameUI,scoreSubmit;
 
     [SerializeField]
     Text subMenuTitle;

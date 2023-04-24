@@ -5,8 +5,6 @@ using UnityEngine.InputSystem.Utilities;
 
 public class CutsceneManager : MonoBehaviour
 {
-    // We want to remove the event listener we install through InputSystem.onAnyButtonPress
-    // after we're done so remember it here.
     private IDisposable m_EventListener;
     
     [SerializeField]float timer,playerSpeed,meteorSpeed;
@@ -37,7 +35,7 @@ public class CutsceneManager : MonoBehaviour
             timer += playerSpeed;
             GameManager.instance.player.transform.rotation = Quaternion.Lerp(initialRotation, doomedCity.transform.rotation, timer);
         }
-        if (GameManager.instance.player.transform.rotation == doomedCity.transform.rotation && animator.GetCurrentAnimatorStateInfo(0).IsName("New State 0"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("New State 0"))
         {
             OnButtonPressed(null);
         }
@@ -46,7 +44,6 @@ public class CutsceneManager : MonoBehaviour
     {
         doomedCity.SetActive(false);
         m_EventListener.Dispose();
-        //ScoreManager.instance.Score = 0;
         MenuManager.instance.gameUI.SetActive(true);
         GameManager.instance.gameState = GameState.Playing;
         GameManager.instance.PauseGame(false);

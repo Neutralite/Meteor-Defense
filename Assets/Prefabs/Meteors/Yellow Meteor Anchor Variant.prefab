@@ -64,9 +64,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 517586699384886234, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3de35c5868dc98948bfa73d8141701a3, type: 2}
+    - target: {fileID: 7246217728053380077, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7aac3f4958fd77f4ba0a2195af194206, type: 2}
     - target: {fileID: 7246217728189828792, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
       propertyPath: m_Name
-      value: Yellow Meteor Anchor Variant 2
+      value: Yellow Meteor Anchor Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7246217728189828793, guid: b605b13aa31f7a446919c9d877f8f721, type: 3}
       propertyPath: m_RootOrder

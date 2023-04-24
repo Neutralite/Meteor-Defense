@@ -4,19 +4,24 @@ using UnityEngine.UI;
 
 public class HighScoresManager : MonoBehaviour
 {
+    public static HighScoresManager instance;
     [SerializeField]
     ScoreEntry[] highScores = new ScoreEntry[5];
     [SerializeField]
     Text[] highScoreText;
-
+    [SerializeField]
+    InputField nameInput;
+    public int scoreToBeat;
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         LoadScores();
         UpdateLeaderboard();
+        scoreToBeat = highScores[^1].score;
     }
 
-    private void LoadScores()
+    void LoadScores()
     {
         for (int i = 0; i < highScores.Length; i++)
         {
@@ -25,12 +30,8 @@ public class HighScoresManager : MonoBehaviour
         }
     }
 
-    public void AddHighScore(ScoreEntry newEntry)
+    void AddHighScore(ScoreEntry newEntry)
     {
-        if (newEntry.score < highScores[highScores.Length - 1].score)
-        {
-            return;
-        }
         highScores[highScores.Length - 1] = newEntry;
         for (int i = highScores.Length - 1; i > 0; i--)
         {
@@ -47,7 +48,10 @@ public class HighScoresManager : MonoBehaviour
         SaveHighScores();
         UpdateLeaderboard();
     }
-
+    public void SubmitScore()
+    {
+        AddHighScore(new() {name = nameInput.text,score = ScoreManager.instance.Score});
+    }
     void SaveHighScores()
     {
         for (int i = 0; i < highScoreText.Length; i++)
@@ -62,14 +66,6 @@ public class HighScoresManager : MonoBehaviour
         for (int i = 0; i < highScoreText.Length; i++)
         {
             highScoreText[i].text = $"{i + 1}. {highScores[i].name} {highScores[i].score}";
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            AddHighScore(new() { name = "afs", score = UnityEngine.Random.Range(0,999)});
         }
     }
 }

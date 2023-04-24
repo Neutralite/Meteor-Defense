@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public int planetLayer = 8,
                cityLayer = 9, 
-               meteorLayer = 10, 
+               meteorLayer = 10,
+               shieldLayer=11,
                startingCities = 10, 
                citiesIntialHealth = 1, 
                meteorDelay = 10,
@@ -62,11 +65,24 @@ public class GameManager : MonoBehaviour
 
         if (MeteorDefensePoolManager.instance.activeCities.Count == 0)
         {
-            PauseGame(true);
+            EndSession();
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
             PlayerPrefs.DeleteAll();
+        }
+    }
+
+    public void EndSession()
+    {
+        PauseGame(true);
+        if (ScoreManager.instance.Score < HighScoresManager.instance.scoreToBeat)
+        {
+            RestartGame();
+        }
+        else
+        {
+            MenuManager.instance.scoreSubmit.SetActive(true);
         }
     }
 
@@ -77,8 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        MeteorDefensePoolManager.instance.ReturnAll();
-        Setup();
+        SceneManager.LoadScene(0);
     }
 }
 
@@ -89,7 +104,7 @@ public enum GameState
 
 public enum ObjectID
 {
-    Planet, City, Meteor
+    Planet, City, Meteor, Shield
 }
 
 [Serializable]

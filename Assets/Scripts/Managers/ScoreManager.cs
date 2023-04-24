@@ -5,7 +5,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
     [SerializeField]
-    Text scoreText;
+    Text[] scoreTexts;
     int score = 0;
     public int Score
     {
@@ -13,7 +13,8 @@ public class ScoreManager : MonoBehaviour
         set
         {
             score = value;
-            scoreText.text = $"Score: {score}";
+            scoreTexts[0].text = $"Score: {score}";
+            scoreTexts[1].text = $"{score}";
         }
     }
     private void Start()
