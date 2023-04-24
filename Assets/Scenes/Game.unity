@@ -2222,6 +2222,10 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7456607097840922202, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7456607097882763059, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -2249,7 +2253,7 @@ PrefabInstance:
     - target: {fileID: 7456607097952924252, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 85ecc7e63e2b31d4e925bcfe843f2e5b, type: 3}
+      objectReference: {fileID: 21300000, guid: ca3033d9a6c718d4899d64dd4d1fa429, type: 3}
     - target: {fileID: 7456607097952924252, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_DisabledSprite
       value: 
@@ -2261,7 +2265,7 @@ PrefabInstance:
     - target: {fileID: 7456607097952924252, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: f11d2f2842bb94b46b1e799f5dca3154, type: 3}
+      objectReference: {fileID: 21300000, guid: ca3033d9a6c718d4899d64dd4d1fa429, type: 3}
     - target: {fileID: 7456607097952924252, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
@@ -2273,7 +2277,7 @@ PrefabInstance:
     - target: {fileID: 7456607097952924254, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 85ecc7e63e2b31d4e925bcfe843f2e5b, type: 3}
+      objectReference: {fileID: 21300000, guid: 2705857525bbccb47ac06b5a908b14c8, type: 3}
     - target: {fileID: 7456607097952924254, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Color.a
       value: 0.8666667
@@ -2289,7 +2293,7 @@ PrefabInstance:
     - target: {fileID: 7456607097986445634, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9c87014e436d59842a9676b341532ad8, type: 3}
+      objectReference: {fileID: 21300000, guid: 9aa5c2d7c4b3d534bbe664226a2fc8f1, type: 3}
     - target: {fileID: 7456607097986445634, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -2299,9 +2303,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7456607097986445635, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 538a93498a0306648b5f2d5cb4718aef, type: 3}
+    - target: {fileID: 7456607097986445635, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 98ac6e81c23c5d54098e04a1c79f4e3a, type: 3}
+      objectReference: {fileID: 21300000, guid: 538a93498a0306648b5f2d5cb4718aef, type: 3}
     - target: {fileID: 7456607097996964290, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2349,7 +2357,7 @@ PrefabInstance:
     - target: {fileID: 7456607098123879245, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 20da0c2bbc739e64c83b337654370db2, type: 3}
+      objectReference: {fileID: 21300000, guid: cf96d71a37d90eb47b061109fa36b911, type: 3}
     - target: {fileID: 7456607098123879246, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Transition
       value: 2
@@ -2357,11 +2365,11 @@ PrefabInstance:
     - target: {fileID: 7456607098123879246, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9c87014e436d59842a9676b341532ad8, type: 3}
+      objectReference: {fileID: 21300000, guid: 99f00a1add912f5439621a7ee2c18235, type: 3}
     - target: {fileID: 7456607098123879246, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 868c0e1efc9705343a97bd9cec9d0ee6, type: 3}
+      objectReference: {fileID: 21300000, guid: 99f00a1add912f5439621a7ee2c18235, type: 3}
     - target: {fileID: 7456607098134254059, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2374,6 +2382,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2000827433}
+    - target: {fileID: 7456607098237175251, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7456607098300273169, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -2397,7 +2409,7 @@ PrefabInstance:
     - target: {fileID: 7456607098629099466, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 12ede436cf3a1d34891d5a75928e7ce8, type: 3}
+      objectReference: {fileID: 21300000, guid: c0f7b1477d8ae4b47b34afb2187e273e, type: 3}
     - target: {fileID: 7456607098629099466, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -2413,7 +2425,7 @@ PrefabInstance:
     - target: {fileID: 7456607098629099467, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 999e924ff2b93324488bb6fb7df96526, type: 3}
+      objectReference: {fileID: 21300000, guid: ec3ad77b8a11d584c861a9333b8ce0f9, type: 3}
     - target: {fileID: 7456607098691313959, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2445,7 +2457,7 @@ PrefabInstance:
     - target: {fileID: 7456607098926649193, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 18ce171579b5a8142a013e43d9ca8871, type: 3}
+      objectReference: {fileID: 21300000, guid: e15316a2262b3f34eb2e902630fcaa28, type: 3}
     - target: {fileID: 7456607098926649193, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -2457,11 +2469,11 @@ PrefabInstance:
     - target: {fileID: 7456607098926649194, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: bab70a82d829cfe45ae63b863a4550b7, type: 3}
+      objectReference: {fileID: 21300000, guid: 8ba1cf6e9a428044e872a28f69b47666, type: 3}
     - target: {fileID: 7456607098926649194, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: bab70a82d829cfe45ae63b863a4550b7, type: 3}
+      objectReference: {fileID: 21300000, guid: 8ba1cf6e9a428044e872a28f69b47666, type: 3}
     - target: {fileID: 7456607098926649194, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2470,6 +2482,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 62d645ee69fb62244a0d6dac029301a0, type: 3}
+    - target: {fileID: 7456607099082253985, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7456607099108944090, guid: f25ec17fc1c439440bc5aefb52c4f0d7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
