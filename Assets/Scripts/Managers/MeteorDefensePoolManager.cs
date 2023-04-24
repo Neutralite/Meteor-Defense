@@ -70,6 +70,7 @@ public class MeteorDefensePoolManager : MonoBehaviour
     public void ReturnObject(GameObject obj,ObjectID objectID)
     {
         obj.SetActive(false);
+
         switch (objectID)
         {
             case ObjectID.City:
@@ -78,8 +79,7 @@ public class MeteorDefensePoolManager : MonoBehaviour
                 break;
             case ObjectID.Meteor:
                 SupportFunctions.MoveBetweenLists(activeMeteors, inactiveMeteors, obj);
-                obj.transform.GetChild(0).position = new(0, GameManager.instance.meteorHeight);
-                obj.transform.GetChild(0).rotation = Quaternion.identity;
+                obj.transform.GetChild(0).localPosition = new(0, GameManager.instance.meteorHeight,0);
                 obj.GetComponentInChildren<Rigidbody>().velocity = Vector3.zero;
                 break;
         }

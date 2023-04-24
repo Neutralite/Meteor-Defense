@@ -87,8 +87,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3889802272434952498, guid: 36c87afba18919f4f8ae5df8f551903f, type: 3}
+      propertyPath: meteorAnchor
+      value: 
+      objectReference: {fileID: 7246217728189828792}
+    - target: {fileID: 3889802272434952498, guid: 36c87afba18919f4f8ae5df8f551903f, type: 3}
+      propertyPath: meteorComponent
+      value: 
+      objectReference: {fileID: 5989433893541077696}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36c87afba18919f4f8ae5df8f551903f, type: 3}
+--- !u!114 &5989433893541077696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6079968945005636168, guid: 36c87afba18919f4f8ae5df8f551903f, type: 3}
+  m_PrefabInstance: {fileID: 8683259015871543160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5c69752f42eec4ca9327fbdf357f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7246217728579328427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2021727763108523731, guid: 36c87afba18919f4f8ae5df8f551903f, type: 3}

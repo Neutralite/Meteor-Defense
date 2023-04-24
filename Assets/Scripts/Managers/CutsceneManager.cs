@@ -26,22 +26,27 @@ public class CutsceneManager : MonoBehaviour
         m_EventListener = InputSystem.onAnyButtonPress.Call(OnButtonPressed);
         GameManager.instance.gameState = GameState.Cutscene;
         initialRotation = GameManager.instance.player.transform.rotation;
-
+        animator.enabled=true;
         animator.SetTrigger("Play");
     }
 
     private void Update()
     {
-        if (GameManager.instance.gameState == GameState.Cutscene)
+        if (GameManager.instance.gameState == GameState.Cutscene && GameManager.instance.player.transform.rotation!= doomedCity.transform.rotation)
         {
             timer += playerSpeed;
             GameManager.instance.player.transform.rotation = Quaternion.Lerp(initialRotation, doomedCity.transform.rotation, timer);
         }
+        if (GameManager.instance.player.transform.rotation == doomedCity.transform.rotation && animator.GetCurrentAnimatorStateInfo(0).IsName("New State 0"))
+        {
+            OnButtonPressed(null);
+        }
     }
     void OnButtonPressed(InputControl button)
     {
+        doomedCity.SetActive(false);
         m_EventListener.Dispose();
-        ScoreManager.instance.Score = 0;
+        //ScoreManager.instance.Score = 0;
         MenuManager.instance.gameUI.SetActive(true);
         GameManager.instance.gameState = GameState.Playing;
         GameManager.instance.PauseGame(false);

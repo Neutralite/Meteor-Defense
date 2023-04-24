@@ -5,9 +5,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public int cityLayer = 9, 
+    public int planetLayer = 8,
+               cityLayer = 9, 
                meteorLayer = 10, 
                startingCities = 10, 
+               citiesIntialHealth = 1, 
                meteorDelay = 10,
                meteorHeight = 30;
 
@@ -37,23 +39,31 @@ public class GameManager : MonoBehaviour
     private void Setup()
     {
         MeteorDefensePoolManager.instance.ReleaseObjects(startingCities, ObjectID.City);
-        untargetedCities = MeteorDefensePoolManager.instance.activeCities;
+        foreach (var item in MeteorDefensePoolManager.instance.activeCities)
+        {
+            untargetedCities.Add(item);
+        }
     }
 
     void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer >= meteorDelay && untargetedCities.Count > 0 &&gameState==GameState.Playing)
+        if (timer >= meteorDelay && untargetedCities.Count > 0)
         {
             timer = 0;
             GameObject meteor = MeteorDefensePoolManager.instance.ReleaseObject(ObjectID.Meteor);
             GameObject city = untargetedCities[UnityEngine.Random.Range(0,untargetedCities.Count)];
+            SupportFunctions.MoveBetweenLists(untargetedCities, targetedCities, city);
+            meteor.GetComponentInChildren<Meteor>().targetCity = city;
             meteor.transform.rotation = city.transform.rotation;
             meteor.SetActive(true);
-            SupportFunctions.MoveBetweenLists(GameManager.instance.untargetedCities, GameManager.instance.targetedCities, city);
         }
 
+        if (MeteorDefensePoolManager.instance.activeCities.Count == 0)
+        {
+            PauseGame(true);
+        }
         if (Input.GetKeyDown(KeyCode.C))
         {
             PlayerPrefs.DeleteAll();
