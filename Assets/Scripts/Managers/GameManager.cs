@@ -67,10 +67,6 @@ public class GameManager : MonoBehaviour
         {
             EndSession();
         }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            PlayerPrefs.DeleteAll();
-        }
     }
 
     public void EndSession()
