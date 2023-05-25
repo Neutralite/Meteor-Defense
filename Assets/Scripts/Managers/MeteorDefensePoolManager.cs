@@ -79,7 +79,7 @@ public class MeteorDefensePoolManager : MonoBehaviour
                 break;
             case ObjectID.Meteor:
                 SupportFunctions.MoveBetweenLists(activeMeteors, inactiveMeteors, obj);
-                obj.transform.GetChild(0).localPosition = new(0, GameManager.instance.meteorHeight,0);
+                obj.transform.GetChild(0).localPosition = new(0, GameManager2.instance.meteorHeight,0);
                 obj.GetComponentInChildren<Rigidbody>().velocity = Vector3.zero;
                 break;
         }

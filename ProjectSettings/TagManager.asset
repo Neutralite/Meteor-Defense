@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - City
-  - Meteor
+  - Main Menu
+  - Pause Menu
   layers:
   - Default
   - TransparentFX

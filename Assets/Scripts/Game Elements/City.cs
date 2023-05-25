@@ -6,6 +6,6 @@ public class City : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = GameManager.instance.citiesIntialHealth;
+        //health = GameManager.instance.citiesIntialHealth;
     }
 }

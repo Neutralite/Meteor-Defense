@@ -9,21 +9,21 @@ public class Meteor : MonoBehaviour
     public int size = 1;
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == GameManager.instance.shieldLayer)
+        if (collision.gameObject.layer == GameManager2.instance.shieldLayer)
         {
-            SupportFunctions.MoveBetweenLists(GameManager.instance.targetedCities, GameManager.instance.untargetedCities, targetCity);
-            ScoreManager.instance.Score += GameManager.instance.scoreChanges[ObjectID.Shield];
+            SupportFunctions.MoveBetweenLists(GameManager2.instance.targetedCities, GameManager2.instance.untargetedCities, targetCity);
+            ScoreManager.instance.Score += GameManager2.instance.scoreChanges[ObjectID.Shield];
             return;
         }
 
-        if (collision.gameObject.layer == GameManager.instance.planetLayer)
+        if (collision.gameObject.layer == GameManager2.instance.planetLayer)
         {
-            SupportFunctions.MoveBetweenLists(GameManager.instance.targetedCities, GameManager.instance.untargetedCities, targetCity);
+            SupportFunctions.MoveBetweenLists(GameManager2.instance.targetedCities, GameManager2.instance.untargetedCities, targetCity);
 
             scoreChangeID = ObjectID.Planet;
         }
 
-        if (collision.gameObject.layer == GameManager.instance.cityLayer)
+        if (collision.gameObject.layer == GameManager2.instance.cityLayer)
         {
             collision.gameObject.GetComponent<City>().health -= size;
 
@@ -33,13 +33,13 @@ public class Meteor : MonoBehaviour
             }
             else
             {
-                SupportFunctions.MoveBetweenLists(GameManager.instance.targetedCities, GameManager.instance.untargetedCities, targetCity);
+                SupportFunctions.MoveBetweenLists(GameManager2.instance.targetedCities, GameManager2.instance.untargetedCities, targetCity);
             }
             scoreChangeID = ObjectID.City;
         }
 
         GetComponent<Meteor>().targetCity = null;
-        ScoreManager.instance.Score += GameManager.instance.scoreChanges[scoreChangeID];
+        ScoreManager.instance.Score += GameManager2.instance.scoreChanges[scoreChangeID];
         MeteorDefensePoolManager.instance.ReturnObject(transform.parent.gameObject, ObjectID.Meteor);
     }
 }
