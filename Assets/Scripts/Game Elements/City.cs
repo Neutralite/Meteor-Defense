@@ -2,10 +2,24 @@ using UnityEngine;
 
 public class City : MonoBehaviour
 {
+    static int cityCounter;
+    public int spawnOrder;
     public int health;
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnEnable()
     {
-        //health = GameManager.instance.citiesIntialHealth;
+        spawnOrder = cityCounter;
+        cityCounter++;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("City"))
+        {
+            if (collision.gameObject.GetComponent<City>().spawnOrder<spawnOrder)
+            {
+                transform.rotation = Random.rotation;
+            }
+        }
     }
 }
