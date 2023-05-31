@@ -92,13 +92,6 @@ public class GameManager2 : MonoBehaviour
     }
 }
 
-
-
-public enum ObjectID
-{
-    Planet, City, Meteor, Shield
-}
-
 [Serializable]
 public struct ScoreChange
 {

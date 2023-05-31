@@ -12,7 +12,7 @@ public class Meteor : MonoBehaviour
         if (collision.gameObject.layer == GameManager2.instance.shieldLayer)
         {
             SupportFunctions.MoveBetweenLists(GameManager2.instance.targetedCities, GameManager2.instance.untargetedCities, targetCity);
-            ScoreManager.instance.Score += GameManager2.instance.scoreChanges[ObjectID.Shield];
+            ScoreManager.instance.Score += 5;
             return;
         }
 
@@ -20,7 +20,7 @@ public class Meteor : MonoBehaviour
         {
             SupportFunctions.MoveBetweenLists(GameManager2.instance.targetedCities, GameManager2.instance.untargetedCities, targetCity);
 
-            scoreChangeID = ObjectID.Planet;
+            scoreChangeID = ObjectID.Meteor;
         }
 
         if (collision.gameObject.layer == GameManager2.instance.cityLayer)
@@ -35,7 +35,7 @@ public class Meteor : MonoBehaviour
             {
                 SupportFunctions.MoveBetweenLists(GameManager2.instance.targetedCities, GameManager2.instance.untargetedCities, targetCity);
             }
-            scoreChangeID = ObjectID.City;
+            scoreChangeID = ObjectID.Meteor;
         }
 
         GetComponent<Meteor>().targetCity = null;

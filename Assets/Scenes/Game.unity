@@ -900,6 +900,8 @@ GameObject:
   m_Component:
   - component: {fileID: 236250206}
   - component: {fileID: 236250207}
+  - component: {fileID: 236250209}
+  - component: {fileID: 236250208}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -935,6 +937,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
+--- !u!114 &236250208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236250205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac5d73e12c4cc34c8ffed9b317a3d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &236250209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236250205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f4d5943dc04ed4c88ba61c6833c3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &239104908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 836655280}
+  - component: {fileID: 836655281}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: Untagged
@@ -2107,6 +2134,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &836655281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836655279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121ae4b3dd9887b41b8130d5e9f1ebd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPools:
+  - prefabVariants:
+    - {fileID: 239104908}
+    inactiveList: []
+    activeList: []
 --- !u!1 &915002820
 GameObject:
   m_ObjectHideFlags: 0
