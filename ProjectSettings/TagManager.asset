@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Main Menu
   - Pause Menu
+  - City
+  - Meteor
   layers:
   - Default
   - TransparentFX
@@ -15,10 +17,10 @@ TagManager:
   - UI
   - 
   - 
-  - Planet
-  - City
-  - Meteor
-  - Shield
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
