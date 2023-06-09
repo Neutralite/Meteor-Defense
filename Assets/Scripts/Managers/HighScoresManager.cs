@@ -9,13 +9,20 @@ public class HighScoresManager : MonoBehaviour
     ScoreEntry[] highScores = new ScoreEntry[5];
     [SerializeField]
     Text[] highScoreText;
+    public int scoreToBeat;
     [SerializeField]
     InputField nameInput;
-    public int scoreToBeat;
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     void Start()
     {
-        instance = this;
         LoadScores();
         UpdateLeaderboard();
         scoreToBeat = highScores[^1].score;
@@ -30,9 +37,10 @@ public class HighScoresManager : MonoBehaviour
         }
     }
 
-    void AddHighScore(ScoreEntry newEntry)
+    public void AddHighScore()
     {
-        highScores[highScores.Length - 1] = newEntry;
+        ScoreEntry newEntry = new() { name = nameInput.text, score = ScoreManager.instance.Score };
+        highScores[^1] = newEntry;
         for (int i = highScores.Length - 1; i > 0; i--)
         {
             if (highScores[i].score > highScores[i-1].score)
@@ -45,20 +53,8 @@ public class HighScoresManager : MonoBehaviour
                 break;
             }
         }
-        SaveHighScores();
         UpdateLeaderboard();
-    }
-    public void SubmitScore()
-    {
-        AddHighScore(new() {name = nameInput.text,score = ScoreManager.instance.Score});
-    }
-    void SaveHighScores()
-    {
-        for (int i = 0; i < highScoreText.Length; i++)
-        {
-            PlayerPrefs.SetString($"name{i}", highScores[i].name);
-            PlayerPrefs.SetInt($"score{i}", highScores[i].score);
-        }
+        SaveHighScores();
     }
 
     void UpdateLeaderboard()
@@ -66,6 +62,15 @@ public class HighScoresManager : MonoBehaviour
         for (int i = 0; i < highScoreText.Length; i++)
         {
             highScoreText[i].text = $"{i + 1}. {highScores[i].name} {highScores[i].score}";
+        }
+    }
+
+    void SaveHighScores()
+    {
+        for (int i = 0; i < highScoreText.Length; i++)
+        {
+            PlayerPrefs.SetString($"name{i}", highScores[i].name);
+            PlayerPrefs.SetInt($"score{i}", highScores[i].score);
         }
     }
 }

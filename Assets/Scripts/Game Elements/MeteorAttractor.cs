@@ -8,7 +8,7 @@ public class MeteorAttractor : MonoBehaviour
     {
         if (GameManager.instance.gameState == GameState.Playing)
         {
-            foreach (GameObject item in ObjectPoolManager.instance.objectPools[1].activeList)
+            foreach (GameObject item in ObjectPoolManager.instance.objectPools[(int)ObjectID.Meteor].activeList)
             {
                 Vector3 dir = -item.transform.GetChild(0).position.normalized;
                 Rigidbody rb = item.GetComponentInChildren<Rigidbody>();

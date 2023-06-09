@@ -17,8 +17,11 @@ public class ScoreManager : MonoBehaviour
             scoreTexts[1].text = $"{score}";
         }
     }
-    private void Start()
+    private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 }
