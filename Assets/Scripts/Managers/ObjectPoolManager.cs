@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static ObjectPoolManager instance;
+    public static ObjectPoolManager Instance { get; private set; }
 
     public List<ObjectPool> objectPools;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null && Instance != this)
         {
-            instance = this;
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
         }
     }
 
@@ -51,5 +55,5 @@ public struct ObjectPool
 
 public enum ObjectID
 {
-    City, Meteor
+   Planet = -2,Shield = -1, City = 0, Meteor = 1
 }

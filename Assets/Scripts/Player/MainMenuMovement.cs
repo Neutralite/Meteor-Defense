@@ -6,8 +6,8 @@ public class MainMenuMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * speed * Time.deltaTime);
-        if (GameManager.instance.gameState != GameState.MainMenu)
+        transform.Rotate(Vector3.forward * speed * Time.deltaTime);
+        if (GameManager.Instance.gameState != GameState.MainMenu)
         {
             Destroy(this);
         }

@@ -1,33 +1,42 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HighScoresManager : MonoBehaviour
 {
-    public static HighScoresManager instance;
+    public static HighScoresManager Instance { get; private set; }
     [SerializeField]
     ScoreEntry[] highScores = new ScoreEntry[5];
     [SerializeField]
     Text[] highScoreText;
     public int scoreToBeat;
+    public int ScoreToBeat => highScores[^1].score;
     [SerializeField]
     InputField nameInput;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null && Instance != this)
         {
-            instance = this;
+            Destroy(this);
         }
-    }
+        else
+        {
+            Instance = this;
+        }
 
-    void Start()
-    {
         LoadScores();
         UpdateLeaderboard();
-        scoreToBeat = highScores[^1].score;
     }
 
+    private void Update()
+    {
+        if (GameManager.Instance.gameState == GameState.GameOver && EventSystem.current.currentSelectedGameObject != nameInput)
+        {
+            nameInput.Select();
+        }
+    }
     void LoadScores()
     {
         for (int i = 0; i < highScores.Length; i++)
@@ -39,7 +48,7 @@ public class HighScoresManager : MonoBehaviour
 
     public void AddHighScore()
     {
-        ScoreEntry newEntry = new() { name = nameInput.text, score = ScoreManager.instance.Score };
+        ScoreEntry newEntry = new() { name = nameInput.text, score = ScoreManager.Instance.Score };
         highScores[^1] = newEntry;
         for (int i = highScores.Length - 1; i > 0; i--)
         {

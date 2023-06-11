@@ -1,10 +1,9 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    public static MenuManager instance;
+    public static MenuManager Instance { get; private set; }
 
     [SerializeField]
     GameObject rootMenu, menuCommons, backButton;
@@ -16,19 +15,18 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null && Instance != this)
         {
-            instance = this;
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
         }
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.gameState == GameState.Playing)
-        {
-            gameUI.SetActive(true);
-        }
-
-        if (InputManager.instance.EscapeInput)
+        if (InputManager.Instance.EscapeInput && GameManager.Instance.gameState != GameState.GameOver)
         {
             if (currentMenu.CompareTag("Pause Menu"))
             {
@@ -37,9 +35,7 @@ public class MenuManager : MonoBehaviour
             {
                 ReturnToRoot();
             }
-
         }
-
     }
     public void SwitchRootMenu(GameObject pauseMenu)
     {
@@ -59,7 +55,10 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnToRoot()
     {
-        OpenMenu(rootMenu);
+        if (GameManager.Instance.gameState!=GameState.GameOver)
+        {
+            OpenMenu(rootMenu);
+        }
     }
 
     public void TogglePauseMenu()
@@ -73,11 +72,5 @@ public class MenuManager : MonoBehaviour
             currentMenu.SetActive(false);
             menuCommons.SetActive(false);
         }
-
-    }
-    public void QuitGame()
-    {
-        Debug.Log("Quit");
-        Application.Quit();
     }
 }

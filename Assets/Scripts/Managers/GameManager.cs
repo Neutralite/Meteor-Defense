@@ -1,51 +1,44 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance { get; private set; }
 
     public GameState gameState = GameState.MainMenu;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null && Instance != this)
         {
-            instance = this;
+            Destroy(this);
         }
-    }
-    void Start()
-    {
-
+        else
+        {
+            Instance = this;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && gameState == GameState.Cutscene)
-        {
-            gameState = GameState.Playing;
-        }
-        
-        if (InputManager.instance.EscapeInput && MenuManager.instance.currentMenu.CompareTag("Pause Menu"))
+        if (InputManager.Instance.EscapeInput && MenuManager.Instance.currentMenu.CompareTag("Pause Menu") && gameState!=GameState.GameOver)
         {
             TogglePauseState();
+        }
+
+        if (Planet.Instance.Health == 0 && gameState != GameState.GameOver)
+        {
+            gameState = GameState.GameOver;
+            Time.timeScale = 0;
+            EndSession();
         }
     }
 
     public void TogglePauseState()
     {
-        if (gameState == GameState.Paused)
-        {
-            gameState = GameState.Playing;
-            Time.timeScale = 1;
-        }
-        else
-        {
-            gameState = GameState.Paused;
-            Time.timeScale = 0;
-        }
+        gameState = gameState == GameState.Paused ? GameState.Playing : GameState.Paused;
+        Time.timeScale = gameState == GameState.Paused ? 0 : 1;
     }
 
     public void ChangeState(int state)
@@ -53,13 +46,32 @@ public class GameManager : MonoBehaviour
         gameState = (GameState)state;
     }
 
+    public void EndSession()
+    {
+        if (ScoreManager.Instance.Score < HighScoresManager.Instance.ScoreToBeat)
+        {
+            Restart();
+        }
+        else
+        {
+            MenuManager.Instance.OpenMenu(MenuManager.Instance.scoreSubmit);
+        }
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }
 
 public enum GameState
 {
-    MainMenu, Cutscene, Playing, Paused
+    MainMenu, Cutscene, Playing, Paused, GameOver
 }

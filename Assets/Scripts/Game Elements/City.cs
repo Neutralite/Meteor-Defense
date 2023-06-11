@@ -2,23 +2,38 @@ using UnityEngine;
 
 public class City : MonoBehaviour
 {
-    static int cityCounter;
-    public int spawnOrder;
-    public int health;
+    [SerializeField] GameObject unhit, hit;
+    public int spawnOrder, health;
 
-    private void OnEnable()
-    {
-        spawnOrder = cityCounter;
-        cityCounter++;
-    }
-
+    // Overlapping cities prevention
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("City"))
         {
-            if (collision.gameObject.GetComponent<City>().spawnOrder<spawnOrder)
+            if (collision.gameObject.GetComponent<City>().spawnOrder < spawnOrder)
             {
                 transform.rotation = Random.rotation;
+            }
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Meteor"))
+        {
+            if (health == 1)
+            {
+                if (GameManager.Instance.gameState == GameState.Playing)
+                {
+                    Planet.Instance.Health -= 5;
+                    ScoreManager.Instance.Score -= 5;
+                }
+                health -= 1;
+                unhit.SetActive(false);
+                hit.SetActive(true);
+            }
+            else
+            {
+                Planet.Instance.Health -= 10;
             }
         }
     }

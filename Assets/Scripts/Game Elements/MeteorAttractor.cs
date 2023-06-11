@@ -6,9 +6,9 @@ public class MeteorAttractor : MonoBehaviour
     int meteorSpeed;
     void Update()
     {
-        if (GameManager.instance.gameState == GameState.Playing)
+        if (GameManager.Instance.gameState == GameState.Playing || GameManager.Instance.gameState == GameState.Cutscene)
         {
-            foreach (GameObject item in ObjectPoolManager.instance.objectPools[(int)ObjectID.Meteor].activeList)
+            foreach (GameObject item in ObjectPoolManager.Instance.objectPools[(int)ObjectID.Meteor].activeList)
             {
                 Vector3 dir = -item.transform.GetChild(0).position.normalized;
                 Rigidbody rb = item.GetComponentInChildren<Rigidbody>();

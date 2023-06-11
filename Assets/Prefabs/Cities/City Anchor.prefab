@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3603306776979087237}
+  - component: {fileID: 2978006310907916578}
   m_Layer: 0
   m_Name: City Offset
   m_TagString: Untagged
@@ -25,12 +26,25 @@ Transform:
   m_GameObject: {fileID: 5817065791820872223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1361291997162953939}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2978006310907916578
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817065791820872223}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9014098898390074536
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1361291997162953939}
   - component: {fileID: 6900291086630432763}
-  - component: {fileID: 2994024670285542453}
+  - component: {fileID: 5246759254300418225}
   m_Layer: 0
   m_Name: City Anchor
   m_TagString: City
@@ -77,18 +91,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4181c61dc67fd174ba541a9c71e08ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unhit: {fileID: 0}
+  hit: {fileID: 0}
   spawnOrder: 0
-  health: 0
---- !u!135 &2994024670285542453
-SphereCollider:
+  health: 1
+--- !u!54 &5246759254300418225
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9014098898390074536}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 10, z: 0}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
