@@ -13,7 +13,7 @@ public class MeteorAttractor : MonoBehaviour
                 Vector3 dir = -item.transform.GetChild(0).position.normalized;
                 Rigidbody rb = item.GetComponentInChildren<Rigidbody>();
 
-                rb.AddForce(meteorSpeed * Time.deltaTime * dir);
+                rb.AddForce((GameManager.Instance.gameState == GameState.Cutscene ? meteorSpeed * 4 : meteorSpeed) * Time.deltaTime * dir);
             }
         }
     }

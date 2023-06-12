@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
         set
         {
             score = value;
-            score = score < 0 ? 0 : score;
+            score = Mathf.Clamp(score, 0, 9999);
             scoreTexts[0].text = $"Score: {score}";
             scoreTexts[1].text = $"{score}";
         }

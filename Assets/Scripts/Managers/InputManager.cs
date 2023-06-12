@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     public bool EscapeInput { get; private set; }
     public Vector2 MovementInput { get; private set; }
 
-    bool click,onMove;
+    bool onClick,onMove; 
 
     private void Awake()
     {
@@ -23,11 +23,11 @@ public class InputManager : MonoBehaviour
     }
     private void Update()
     {
-        if (MovementInput == Vector2.zero)
+        if (MovementInput == Vector2.zero && onMove == true)
         {
             onMove = false;
         }
-        if (!click && !onMove)
+        if (!onClick && !onMove && MovementInput != Vector2.zero)
         {
             MovementInput = Vector2.zero;
         }
@@ -37,26 +37,24 @@ public class InputManager : MonoBehaviour
         EscapeInput = inputValue.isPressed;
     }
 
-    void OnClick(InputValue inputValue)
-    {
-
-        click = inputValue.isPressed && !onMove;
-    }
-    void OnLook(InputValue inputValue)
-    {
-        if (click)
-        {
-            MovementInput = inputValue.Get<Vector2>();
-        }
-    }
-
     void OnMove(InputValue inputValue)
     {
-        if (!click)
+        if (!onClick)
         {
             MovementInput = inputValue.Get<Vector2>();
             onMove = true;
         }
     }
 
+    void OnClick(InputValue inputValue)
+    {
+        onClick = inputValue.isPressed && !onMove;
+    }
+    void OnLook(InputValue inputValue)
+    {
+        if (onClick)
+        {
+            MovementInput = inputValue.Get<Vector2>() * -1;
+        }
+    }
 }

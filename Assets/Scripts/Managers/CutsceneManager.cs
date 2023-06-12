@@ -33,6 +33,8 @@ public class CutsceneManager : MonoBehaviour
     {
         m_EventListener = InputSystem.onAnyButtonPress.Call(EndCutscene);
         GameManager.Instance.ChangeState((int)GameState.Cutscene);
+        MenuManager.Instance.cutsceneUI.SetActive(true);
+
 
         initialRotation = player.transform.rotation;
         destinationRotation = doomedCity.transform.rotation;
@@ -46,6 +48,7 @@ public class CutsceneManager : MonoBehaviour
     {
         shield.SetActive(true);
         GameManager.Instance.ChangeState((int)GameState.Playing);
+        MenuManager.Instance.cutsceneUI.SetActive(false);
         MenuManager.Instance.gameUI.SetActive(true);
         m_EventListener.Dispose();
     }

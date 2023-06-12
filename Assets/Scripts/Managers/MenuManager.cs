@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     Text subMenuTitle;
 
-    public GameObject currentMenu, gameUI, scoreSubmit;
+    public GameObject currentMenu, cutsceneUI, gameUI, scoreSubmit;
 
     private void Awake()
     {
