@@ -24,7 +24,6 @@ public class CutsceneManager : MonoBehaviour
 
             if (doomedCity.GetComponent<City>().health == 0)
             {
-                shield.SetActive(true);
                 EndCutscene(null);
             }
         }
@@ -45,6 +44,7 @@ public class CutsceneManager : MonoBehaviour
 
     void EndCutscene(InputControl button)
     {
+        shield.SetActive(true);
         GameManager.Instance.ChangeState((int)GameState.Playing);
         MenuManager.Instance.gameUI.SetActive(true);
         m_EventListener.Dispose();

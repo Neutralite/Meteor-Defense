@@ -8,10 +8,7 @@ public class InputManager : MonoBehaviour
     public bool EscapeInput { get; private set; }
     public Vector2 MovementInput { get; private set; }
 
-    [SerializeField]
-    private PlayerInput playerInput;
-
-    private InputAction pauseAction;
+    bool click,onMove;
 
     private void Awake()
     {
@@ -23,18 +20,43 @@ public class InputManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        pauseAction = playerInput.actions["Cancel"];
+    }
+    private void Update()
+    {
+        if (MovementInput == Vector2.zero)
+        {
+            onMove = false;
+        }
+        if (!click && !onMove)
+        {
+            MovementInput = Vector2.zero;
+        }
+    }
+    void OnCancel(InputValue inputValue)
+    {
+        EscapeInput = inputValue.isPressed;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnClick(InputValue inputValue)
     {
-        EscapeInput = pauseAction.WasReleasedThisFrame();
+
+        click = inputValue.isPressed && !onMove;
+    }
+    void OnLook(InputValue inputValue)
+    {
+        if (click)
+        {
+            MovementInput = inputValue.Get<Vector2>();
+        }
     }
 
     void OnMove(InputValue inputValue)
     {
-        MovementInput = inputValue.Get<Vector2>();
+        if (!click)
+        {
+            MovementInput = inputValue.Get<Vector2>();
+            onMove = true;
+        }
     }
+
 }
