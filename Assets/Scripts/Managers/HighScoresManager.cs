@@ -1,26 +1,42 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HighScoresManager : MonoBehaviour
 {
-    public static HighScoresManager instance;
+    public static HighScoresManager Instance { get; private set; }
     [SerializeField]
     ScoreEntry[] highScores = new ScoreEntry[5];
     [SerializeField]
     Text[] highScoreText;
+    public int scoreToBeat;
+    public int ScoreToBeat => highScores[^1].score;
     [SerializeField]
     InputField nameInput;
-    public int scoreToBeat;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         LoadScores();
         UpdateLeaderboard();
-        scoreToBeat = highScores[^1].score;
     }
 
+    private void Update()
+    {
+        if (GameManager.Instance.gameState == GameState.GameOver && EventSystem.current.currentSelectedGameObject != nameInput)
+        {
+            nameInput.Select();
+        }
+    }
     void LoadScores()
     {
         for (int i = 0; i < highScores.Length; i++)
@@ -30,9 +46,10 @@ public class HighScoresManager : MonoBehaviour
         }
     }
 
-    void AddHighScore(ScoreEntry newEntry)
+    public void AddHighScore()
     {
-        highScores[highScores.Length - 1] = newEntry;
+        ScoreEntry newEntry = new() { name = nameInput.text, score = ScoreManager.Instance.Score };
+        highScores[^1] = newEntry;
         for (int i = highScores.Length - 1; i > 0; i--)
         {
             if (highScores[i].score > highScores[i-1].score)
@@ -45,20 +62,8 @@ public class HighScoresManager : MonoBehaviour
                 break;
             }
         }
-        SaveHighScores();
         UpdateLeaderboard();
-    }
-    public void SubmitScore()
-    {
-        AddHighScore(new() {name = nameInput.text,score = ScoreManager.instance.Score});
-    }
-    void SaveHighScores()
-    {
-        for (int i = 0; i < highScoreText.Length; i++)
-        {
-            PlayerPrefs.SetString($"name{i}", highScores[i].name);
-            PlayerPrefs.SetInt($"score{i}", highScores[i].score);
-        }
+        SaveHighScores();
     }
 
     void UpdateLeaderboard()
@@ -66,6 +71,15 @@ public class HighScoresManager : MonoBehaviour
         for (int i = 0; i < highScoreText.Length; i++)
         {
             highScoreText[i].text = $"{i + 1}. {highScores[i].name} {highScores[i].score}";
+        }
+    }
+
+    void SaveHighScores()
+    {
+        for (int i = 0; i < highScoreText.Length; i++)
+        {
+            PlayerPrefs.SetString($"name{i}", highScores[i].name);
+            PlayerPrefs.SetInt($"score{i}", highScores[i].score);
         }
     }
 }

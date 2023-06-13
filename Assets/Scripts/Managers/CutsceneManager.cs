@@ -6,47 +6,50 @@ using UnityEngine.InputSystem.Utilities;
 public class CutsceneManager : MonoBehaviour
 {
     private IDisposable m_EventListener;
-    
-    [SerializeField]float timer,playerSpeed,meteorSpeed;
-    Quaternion initialRotation;
 
-    [SerializeField] GameObject doomedCity;
-    [SerializeField] Animator animator;
+    [SerializeField] GameObject doomedCity, player,shield;
 
-    private void Start()
+    [SerializeField] float timer, playerSpeed;
+    Quaternion initialRotation,destinationRotation;
+
+    private void Update()
     {
-        doomedCity.transform.rotation = UnityEngine.Random.rotation;
-        doomedCity.SetActive(true);
+        if (GameManager.Instance.gameState == GameState.Cutscene)
+        {
+            if (player.transform.rotation != doomedCity.transform.rotation)
+            {
+                timer += playerSpeed;
+                player.transform.rotation = Quaternion.Lerp(initialRotation, destinationRotation, timer);
+            }
+
+            if (!doomedCity.GetComponentInChildren<Collider>().enabled)
+            {
+                EndCutscene(null);
+            }
+        }
     }
 
     public void RunCutscene()
     {
-        m_EventListener = InputSystem.onAnyButtonPress.Call(OnButtonPressed);
-        GameManager.instance.gameState = GameState.Cutscene;
-        initialRotation = GameManager.instance.player.transform.rotation;
-        animator.enabled=true;
-        animator.SetTrigger("Play");
+        m_EventListener = InputSystem.onAnyButtonPress.Call(EndCutscene);
+        GameManager.Instance.ChangeState((int)GameState.Cutscene);
+        MenuManager.Instance.cutsceneUI.SetActive(true);
+
+
+        initialRotation = player.transform.rotation;
+        destinationRotation = doomedCity.transform.rotation;
+
+        GameObject meteor = ObjectPoolManager.Instance.ReleaseObject(ObjectID.Meteor);
+        meteor.transform.rotation = destinationRotation;
+        meteor.SetActive(true);
     }
 
-    private void Update()
+    void EndCutscene(InputControl button)
     {
-        if (GameManager.instance.gameState == GameState.Cutscene && GameManager.instance.player.transform.rotation!= doomedCity.transform.rotation)
-        {
-            timer += playerSpeed;
-            GameManager.instance.player.transform.rotation = Quaternion.Lerp(initialRotation, doomedCity.transform.rotation, timer);
-        }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("New State 0"))
-        {
-            OnButtonPressed(null);
-        }
-    }
-    void OnButtonPressed(InputControl button)
-    {
-        doomedCity.SetActive(false);
+        shield.SetActive(true);
+        GameManager.Instance.ChangeState((int)GameState.Playing);
+        MenuManager.Instance.cutsceneUI.SetActive(false);
+        MenuManager.Instance.gameUI.SetActive(true);
         m_EventListener.Dispose();
-        MenuManager.instance.gameUI.SetActive(true);
-        GameManager.instance.gameState = GameState.Playing;
-        GameManager.instance.PauseGame(false);
     }
-
 }

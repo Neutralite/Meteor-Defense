@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager instance;
+    public static ScoreManager Instance { get; private set; }
     [SerializeField]
     Text[] scoreTexts;
     int score = 0;
@@ -13,12 +13,20 @@ public class ScoreManager : MonoBehaviour
         set
         {
             score = value;
+            score = Mathf.Clamp(score, 0, 9999);
             scoreTexts[0].text = $"Score: {score}";
             scoreTexts[1].text = $"{score}";
         }
     }
-    private void Start()
+    private void Awake()
     {
-        instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 }

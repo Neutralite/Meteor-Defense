@@ -1,111 +1,77 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
-    public int planetLayer = 8,
-               cityLayer = 9, 
-               meteorLayer = 10,
-               shieldLayer=11,
-               startingCities = 10, 
-               citiesIntialHealth = 1, 
-               meteorDelay = 10,
-               meteorHeight = 30;
-
-    public float timer,
-                 meteorSpeed;
-
-    public ScoreChange[] _scoreChanges;
-    public Dictionary<ObjectID, int> scoreChanges = new();
+    public static GameManager Instance { get; private set; }
 
     public GameState gameState = GameState.MainMenu;
 
-    public List<GameObject> untargetedCities, targetedCities;
-    public GameObject player;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        instance = this;
-        Time.timeScale = 0;
-        foreach (ScoreChange item in _scoreChanges)
+        if (Instance != null && Instance != this)
         {
-            scoreChanges.Add(item.objectID, item.change);
+            Destroy(this);
         }
-        Setup();
-    }
-
-    private void Setup()
-    {
-        MeteorDefensePoolManager.instance.ReleaseObjects(startingCities, ObjectID.City);
-        foreach (var item in MeteorDefensePoolManager.instance.activeCities)
+        else
         {
-            untargetedCities.Add(item);
+            Instance = this;
         }
     }
 
+    // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= meteorDelay && untargetedCities.Count > 0)
+        if (InputManager.Instance.EscapeInput && MenuManager.Instance.currentMenu.CompareTag("Pause Menu") && gameState!=GameState.GameOver)
         {
-            timer = 0;
-            GameObject meteor = MeteorDefensePoolManager.instance.ReleaseObject(ObjectID.Meteor);
-            GameObject city = untargetedCities[UnityEngine.Random.Range(0,untargetedCities.Count)];
-            SupportFunctions.MoveBetweenLists(untargetedCities, targetedCities, city);
-            meteor.GetComponentInChildren<Meteor>().targetCity = city;
-            meteor.transform.rotation = city.transform.rotation;
-            meteor.SetActive(true);
+            TogglePauseState();
         }
 
-        if (MeteorDefensePoolManager.instance.activeCities.Count == 0)
+        if ((Planet.Instance.Health == 0 || Shield.scoreIncrease == 0) && gameState != GameState.GameOver)
         {
+            gameState = GameState.GameOver;
+            Time.timeScale = 0;
             EndSession();
         }
     }
 
+    public void TogglePauseState()
+    {
+        gameState = gameState == GameState.Paused ? GameState.Playing : GameState.Paused;
+        Time.timeScale = gameState == GameState.Paused ? 0 : 1;
+    }
+
+    public void ChangeState(int state)
+    {
+        gameState = (GameState)state;
+    }
+
     public void EndSession()
     {
-        PauseGame(true);
-        if (ScoreManager.instance.Score < HighScoresManager.instance.scoreToBeat)
+        if (ScoreManager.Instance.Score < HighScoresManager.Instance.ScoreToBeat)
         {
-            RestartGame();
+            Restart();
         }
         else
         {
-            MenuManager.instance.scoreSubmit.SetActive(true);
+            MenuManager.Instance.OpenMenu(MenuManager.Instance.scoreSubmit);
         }
     }
 
-    public void PauseGame(bool state)
-    {
-        Time.timeScale = state ? 0 : 1;
-    }
-
-    public void RestartGame()
+    public void Restart()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }
 
 public enum GameState
 {
-    MainMenu,Cutscene,PauseMenu,Playing
-}
-
-public enum ObjectID
-{
-    Planet, City, Meteor, Shield
-}
-
-[Serializable]
-public struct ScoreChange
-{
-    public ObjectID objectID; 
-    public int change;
+    MainMenu, Cutscene, Playing, Paused, GameOver
 }

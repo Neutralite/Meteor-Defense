@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Main Menu
+  - Pause Menu
   - City
   - Meteor
   layers:
@@ -15,10 +17,10 @@ TagManager:
   - UI
   - 
   - 
-  - Planet
-  - City
-  - Meteor
-  - Shield
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

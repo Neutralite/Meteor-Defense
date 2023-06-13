@@ -3,42 +3,74 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    public static MenuManager instance;
+    public static MenuManager Instance { get; private set; }
 
     [SerializeField]
-    GameObject menuCommons,mainMenu,pauseMenu;
-    public GameObject gameUI,scoreSubmit;
+    GameObject rootMenu, menuCommons, backButton;
 
     [SerializeField]
     Text subMenuTitle;
 
-    private void Start()
+    public GameObject currentMenu, cutsceneUI, gameUI, scoreSubmit;
+
+    private void Awake()
     {
-        instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    private void Update()
+    {
+        if (InputManager.Instance.EscapeInput && GameManager.Instance.gameState != GameState.GameOver)
+        {
+            if (currentMenu.CompareTag("Pause Menu"))
+            {
+                TogglePauseMenu();
+            } else
+            {
+                ReturnToRoot();
+            }
+        }
+    }
+    public void SwitchRootMenu(GameObject pauseMenu)
+    {
+        rootMenu = pauseMenu;
+        currentMenu = pauseMenu;
     }
 
     public void OpenMenu(GameObject menu)
     {
-        menuCommons.SetActive(true);
-        subMenuTitle.text = menu.name;
-        menu.SetActive(true);
+        currentMenu.SetActive(false);
+        currentMenu = menu;
+        subMenuTitle.text = currentMenu.name;
+        menuCommons.SetActive(!currentMenu.CompareTag("Main Menu"));
+        backButton.SetActive(!currentMenu.CompareTag("Pause Menu") && !currentMenu.CompareTag("Main Menu"));
+        currentMenu.SetActive(true);
     }
 
-    public void OpenMainMenu()
+    public void ReturnToRoot()
     {
-        if (GameManager.instance.gameState == GameState.MainMenu)
+        if (GameManager.Instance.gameState!=GameState.GameOver)
         {
-            mainMenu.SetActive(true);
+            OpenMenu(rootMenu);
+        }
+    }
+
+    public void TogglePauseMenu()
+    {
+        if (!currentMenu.activeSelf)
+        {
+            OpenMenu(rootMenu);
         }
         else
         {
-            pauseMenu.SetActive(true);
+            currentMenu.SetActive(false);
+            menuCommons.SetActive(false);
         }
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quit");
-        Application.Quit();
     }
 }
