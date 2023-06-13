@@ -970,7 +970,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAmount: 11
   cityCounter: 0
-  initialHealth: 1
 --- !u!4 &219215012
 Transform:
   m_ObjectHideFlags: 0

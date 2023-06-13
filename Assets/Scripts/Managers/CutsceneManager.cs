@@ -22,7 +22,7 @@ public class CutsceneManager : MonoBehaviour
                 player.transform.rotation = Quaternion.Lerp(initialRotation, destinationRotation, timer);
             }
 
-            if (doomedCity.GetComponent<City>().health == 0)
+            if (!doomedCity.GetComponentInChildren<Collider>().enabled)
             {
                 EndCutscene(null);
             }

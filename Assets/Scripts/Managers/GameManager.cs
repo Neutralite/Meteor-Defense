@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
             TogglePauseState();
         }
 
-        if (Planet.Instance.Health == 0 && gameState != GameState.GameOver)
+        if ((Planet.Instance.Health == 0 || Shield.scoreIncrease == 0) && gameState != GameState.GameOver)
         {
             gameState = GameState.GameOver;
             Time.timeScale = 0;

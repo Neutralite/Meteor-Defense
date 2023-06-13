@@ -3,7 +3,7 @@ using UnityEngine;
 public class CitySpawner : MonoBehaviour
 {
     [SerializeField]
-    int startAmount,cityCounter,initialHealth = 1;
+    int startAmount,cityCounter;
     private void Start()
     {
         cityCounter = 0;
@@ -11,6 +11,7 @@ public class CitySpawner : MonoBehaviour
         {
             SpawnCity();
         }
+        Shield.scoreIncrease = startAmount;
     }
 
     void SpawnCity()
@@ -18,7 +19,6 @@ public class CitySpawner : MonoBehaviour
         GameObject city = ObjectPoolManager.Instance.ReleaseObject(ObjectID.City);
         city.transform.rotation = Random.rotation;
         city.GetComponent<City>().spawnOrder = cityCounter;
-        city.GetComponent<City>().health = initialHealth;
         cityCounter++;
         city.SetActive(true);
     }
