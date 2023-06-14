@@ -3,6 +3,7 @@ using UnityEngine;
 public class Meteor : MonoBehaviour
 {
     public GameObject explosion;
+    public bool notBlocked = true;
 
     private void Update()
     {
@@ -21,9 +22,15 @@ public class Meteor : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        notBlocked = false;
+    }
+
     private void Despawn()
     {
         explosion = null;
+        notBlocked = true;
         transform.parent.gameObject.SetActive(false);
         transform.localPosition = new(0, 25, 0);
         transform.localRotation = Quaternion.identity;

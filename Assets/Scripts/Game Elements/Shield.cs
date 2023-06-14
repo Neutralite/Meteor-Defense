@@ -8,7 +8,10 @@ public class Shield : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Meteor"))
         {
-            ScoreManager.Instance.Score += scoreIncrease;
+            if (collision.gameObject.GetComponent<Meteor>().notBlocked)
+            {
+                ScoreManager.Instance.Score += scoreIncrease;
+            }
         }
     }
 }
