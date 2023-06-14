@@ -22,6 +22,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (MenuManager.Instance.currentMenu.activeSelf && gameState == GameState.Playing)
+        {
+            gameState = GameState.Paused;
+        }
+
         if (InputManager.Instance.EscapeInput && MenuManager.Instance.currentMenu.CompareTag("Pause Menu") && gameState!=GameState.GameOver)
         {
             TogglePauseState();
@@ -37,7 +43,8 @@ public class GameManager : MonoBehaviour
 
     public void TogglePauseState()
     {
-        gameState = gameState == GameState.Paused ? GameState.Playing : GameState.Paused;
+        gameState = gameState==GameState.Playing? GameState.Paused : GameState.Playing;
+
         Time.timeScale = gameState == GameState.Paused ? 0 : 1;
     }
 

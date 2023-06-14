@@ -10,10 +10,8 @@ public class MeteorAttractor : MonoBehaviour
         {
             foreach (GameObject item in ObjectPoolManager.Instance.objectPools[(int)ObjectID.Meteor].activeList)
             {
-                Vector3 dir = -item.transform.GetChild(0).position.normalized;
-                Rigidbody rb = item.GetComponentInChildren<Rigidbody>();
-
-                rb.AddForce((GameManager.Instance.gameState == GameState.Cutscene ? meteorSpeed * 4 : meteorSpeed) * Time.deltaTime * dir);
+                Vector3 dir = meteorSpeed * Time.deltaTime * Vector2.down;
+                item.transform.GetChild(0).transform.Translate(dir, Space.Self);
             }
         }
     }
