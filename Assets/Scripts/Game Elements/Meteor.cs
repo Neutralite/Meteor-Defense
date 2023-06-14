@@ -8,8 +8,8 @@ public class Meteor : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         transform.parent.gameObject.SetActive(false);
-        transform.position = new(0, 25, 0);
-        transform.rotation = Quaternion.identity;
+        transform.localPosition = new(0, 25, 0);
+        transform.localRotation = Quaternion.identity;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         ObjectPoolManager.Instance.ReturnObject(transform.parent.gameObject);

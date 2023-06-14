@@ -5,6 +5,10 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
+    [SerializeField]
+    PlayerInput playerInput;
+
+    InputAction pauseAction;
     public bool EscapeInput { get; private set; }
     public Vector2 MovementInput { get; private set; }
 
@@ -20,9 +24,12 @@ public class InputManager : MonoBehaviour
         {
             Instance = this;
         }
+        pauseAction = playerInput.actions["Cancel"];
     }
     private void Update()
     {
+        EscapeInput = pauseAction.WasReleasedThisFrame();
+
         if (MovementInput == Vector2.zero && onMove == true)
         {
             onMove = false;
@@ -32,11 +39,6 @@ public class InputManager : MonoBehaviour
             MovementInput = Vector2.zero;
         }
     }
-    void OnCancel(InputValue inputValue)
-    {
-        EscapeInput = inputValue.isPressed;
-    }
-
     void OnMove(InputValue inputValue)
     {
         if (!onClick)

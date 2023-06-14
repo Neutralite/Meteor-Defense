@@ -8,6 +8,9 @@ TagManager:
   - Pause Menu
   - City
   - Meteor
+  - High Scores
+  - Settings
+  - New High Score
   layers:
   - Default
   - TransparentFX

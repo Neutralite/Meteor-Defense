@@ -46,8 +46,8 @@ public class CutsceneManager : MonoBehaviour
 
     void EndCutscene(InputControl button)
     {
-        shield.SetActive(true);
         GameManager.Instance.ChangeState((int)GameState.Playing);
+        shield.SetActive(true);
         MenuManager.Instance.cutsceneUI.SetActive(false);
         MenuManager.Instance.gameUI.SetActive(true);
         m_EventListener.Dispose();
