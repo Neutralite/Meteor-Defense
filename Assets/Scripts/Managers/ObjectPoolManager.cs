@@ -39,7 +39,21 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void ReturnObject(GameObject obj)
     {
-        int temp = obj.CompareTag("City") ? 0 : 1;
+        int temp = 0;
+
+        if (obj.CompareTag("City"))
+        {
+            temp = 0;
+        }
+        if (obj.CompareTag("Meteor"))
+        {
+            temp = 1;
+        } 
+        if (obj.CompareTag("Explosion"))
+        {
+            temp = 2;
+        }
+
 
         SupportFunctions.MoveBetweenLists(objectPools[temp].activeList, objectPools[temp].inactiveList,obj);
     }
@@ -55,5 +69,5 @@ public struct ObjectPool
 
 public enum ObjectID
 {
-   Planet = -2,Shield = -1, City = 0, Meteor = 1
+   Planet = -2,Shield = -1, City = 0, Meteor = 1, Explosion = 2
 }

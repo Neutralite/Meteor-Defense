@@ -11,6 +11,7 @@ TagManager:
   - High Scores
   - Settings
   - New High Score
+  - Explosion
   layers:
   - Default
   - TransparentFX

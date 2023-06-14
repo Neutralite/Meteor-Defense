@@ -10,8 +10,11 @@ public class MeteorAttractor : MonoBehaviour
         {
             foreach (GameObject item in ObjectPoolManager.Instance.objectPools[(int)ObjectID.Meteor].activeList)
             {
-                Vector3 dir = meteorSpeed * Time.deltaTime * Vector2.down;
-                item.transform.GetChild(0).transform.Translate(dir, Space.Self);
+                if (item.GetComponentInChildren<Meteor>().explosion==null)
+                {
+                    Vector3 dir = meteorSpeed * Time.deltaTime * Vector2.down;
+                    item.transform.GetChild(0).transform.Translate(dir, Space.Self);
+                }
             }
         }
     }
