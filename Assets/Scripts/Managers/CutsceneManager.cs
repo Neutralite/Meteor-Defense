@@ -7,7 +7,7 @@ public class CutsceneManager : MonoBehaviour
 {
     private IDisposable m_EventListener;
 
-    [SerializeField] GameObject doomedCity, player,shield;
+    [SerializeField] GameObject doomedCity, player,shield,explosion;
 
     [SerializeField] float timer, playerSpeed;
     Quaternion initialRotation,destinationRotation;
@@ -22,7 +22,7 @@ public class CutsceneManager : MonoBehaviour
                 player.transform.rotation = Quaternion.Lerp(initialRotation, destinationRotation, timer);
             }
 
-            if (!doomedCity.GetComponentInChildren<Collider>().enabled)
+            if (explosion.GetComponent<Explosion>().finished)
             {
                 EndCutscene(null);
             }
